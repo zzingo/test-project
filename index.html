@@ -1,0 +1,58 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Welcome to the calculator</h1>
+<div>
+    <input id="first_number" type="text" placeholder="Enter first number"/>
+    <input id="second_number" type="text" placeholder="Enter second number"/>
+    <button id="sumar">Sumar</button>
+</div>
+
+<div style="background-color:grey">
+    <label id="total"></label>
+</div>
+<script>
+$(document).ready(function () {
+
+$( "#sumar" ).click(function() {
+    var data = {
+        "first_number": $("#first_number").val(),
+        "second_number": $("#second_number").val()
+    }
+    $.ajax({
+      type: "POST",
+      url: "/sumar",
+      data: JSON.stringify(data),
+      success: pintar,
+      contentType: "application/json",
+      dataType: "json"
+    });
+})
+function pintar(response) {
+  $("#total").html(response.result)
+}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
